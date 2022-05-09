@@ -1,4 +1,4 @@
-package com.capgemini.ccsw.teammanager.batch.ldap;
+package com.ccsw.teammanager.batch.ldap;
 
 /**
  * @author pajimene

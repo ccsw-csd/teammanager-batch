@@ -1,4 +1,4 @@
-package com.capgemini.ccsw.teammanager.batch.ponabsence;
+package com.ccsw.teammanager.batch.ponabsence;
 
 import java.util.List;
 

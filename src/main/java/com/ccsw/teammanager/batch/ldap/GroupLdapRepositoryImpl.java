@@ -1,4 +1,4 @@
-package com.capgemini.ccsw.teammanager.batch.ldap;
+package com.ccsw.teammanager.batch.ldap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;

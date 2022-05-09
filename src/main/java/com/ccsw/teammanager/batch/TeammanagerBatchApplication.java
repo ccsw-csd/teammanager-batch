@@ -1,4 +1,4 @@
-package com.capgemini.ccsw.teammanager.batch;
+package com.ccsw.teammanager.batch;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -6,8 +6,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.capgemini.ccsw.teammanager.batch.ldap.LdapService;
-import com.capgemini.ccsw.teammanager.batch.ponabsence.PonAbsenceService;
+import com.ccsw.teammanager.batch.ldap.LdapService;
+import com.ccsw.teammanager.batch.ponabsence.PonAbsenceService;
 
 @SpringBootApplication
 public class TeammanagerBatchApplication implements CommandLineRunner {

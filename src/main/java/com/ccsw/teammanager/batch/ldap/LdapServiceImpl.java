@@ -1,4 +1,4 @@
-package com.capgemini.ccsw.teammanager.batch.ldap;
+package com.ccsw.teammanager.batch.ldap;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

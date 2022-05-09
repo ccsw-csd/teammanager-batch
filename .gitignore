@@ -73,4 +73,3 @@ build/
 .metadata/.plugins/org.eclipse.ui.intro/introstate
 .metadata/.plugins/org.eclipse.ui.workbench/dialog_settings.xml
 .metadata/.plugins/org.eclipse.ui.workbench/workingsets.xml
-src/main/java/com/capgemini/alexandra/opportunity/.gitignore
