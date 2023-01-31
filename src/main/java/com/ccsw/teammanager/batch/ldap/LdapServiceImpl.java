@@ -14,65 +14,67 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(readOnly = true)
 public class LdapServiceImpl implements LdapService {
 
-   private static final Logger LOG = LoggerFactory.getLogger(LdapServiceImpl.class);
+    private static final Logger LOG = LoggerFactory.getLogger(LdapServiceImpl.class);
 
-   @Autowired
-   private PersonLdapRepository personLdap;
+    @Autowired
+    private PersonLdapRepository personLdap;
 
-   @Autowired
-   private GroupLdapRepository groupLdap;
+    @Autowired
+    private GroupLdapRepository groupLdap;
 
-   /**
-   * {@inheritDoc}
-   */
-   @Override
-   @Transactional(readOnly = false)
-   public void loadDataFromLdap() {
+    /**
+    * {@inheritDoc}
+    */
+    @Override
+    @Transactional(readOnly = false)
+    public void loadDataFromLdap() {
 
-      loadPersonDataFromLdap();
-      loadGroupDataFromLdap();
-   }
+        loadPersonDataFromLdap();
+        loadGroupDataFromLdap();
+    }
 
-   private void loadGroupDataFromLdap() {
+    private void loadGroupDataFromLdap() {
 
-      LOG.info("********** CARGA GRUPOS LDAP *************");
-      LOG.info("Borramos tabla temporal");
-      this.groupLdap.deleteAllTemporary();
+        LOG.info("********** CARGA GRUPOS LDAP *************");
+        LOG.info("Borramos tabla temporal");
+        this.groupLdap.deleteAllTemporary();
 
-      LOG.info("Insertamos tabla temporal");
-      this.groupLdap.persistAllTemporary();
+        LOG.info("Insertamos tabla temporal");
+        this.groupLdap.persistAllTemporary();
 
-      LOG.info("Movemos a tabla real");
-      this.groupLdap.moveTemporaryToRealGroup();
+        LOG.info("Movemos a tabla real");
+        this.groupLdap.moveTemporaryToRealGroup();
 
-      LOG.info("********** FIN CARGA GRUPOS LDAP *************");
-   }
+        LOG.info("********** FIN CARGA GRUPOS LDAP *************");
+    }
 
-   private void loadPersonDataFromLdap() {
+    private void loadPersonDataFromLdap() {
 
-      LOG.info("********** CARGA PERSONAS LDAP *************");
-      LOG.info("Borramos tabla temporal");
-      this.personLdap.deleteAllTemporary();
+        LOG.info("********** CARGA PERSONAS LDAP *************");
+        LOG.info("Borramos tabla temporal");
+        this.personLdap.deleteAllTemporary();
 
-      LOG.info("Insertamos tabla temporal");
-      this.personLdap.persistAllTemporary();
+        LOG.info("Insertamos tabla temporal");
+        this.personLdap.persistAllTemporary();
 
-      LOG.info("Movemos a tabla real");
-      this.personLdap.moveTemporaryToRealPerson();
+        LOG.info("Movemos a tabla real");
+        this.personLdap.moveTemporaryToRealPerson();
 
-      LOG.info("********** FIN CARGA PERSONAS LDAP *************");
-   }
+        LOG.info("********** FIN CARGA PERSONAS LDAP *************");
+    }
 
-   /**
-   * {@inheritDoc}
-   */
-   @Transactional(readOnly = false)
-   @Override
-   public void updatePersonInfo() {
+    /**
+    * {@inheritDoc}
+    */
+    @Transactional(readOnly = false)
+    @Override
+    public void updatePersonInfo() {
+        LOG.info("Saneamos codigo SAGA");
+        this.personLdap.updatePersonSagaFromGlobalId();
 
-      LOG.info("Limpiamos personal inactivo");
-      this.personLdap.updatePersonInfoAndRemoveInactivePerson();
+        LOG.info("Limpiamos personal inactivo");
+        this.personLdap.updatePersonInfoAndRemoveInactivePerson();
 
-   }
+    }
 
 }
