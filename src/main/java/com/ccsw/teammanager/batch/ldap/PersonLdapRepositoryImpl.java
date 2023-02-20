@@ -50,7 +50,8 @@ public class PersonLdapRepositoryImpl implements PersonLdapRepository {
                 "from t_person p left join center_transcode ct on p.center = ct.name " + //
                 "where p.saga != '' and not exists (select 1 from person where email=p.email and active = 1)");
 
-        this.jdbcTemplate.update("update person p set p.active = 0 where not exists (select 1 from t_person where email = p.email)");
+        //No, los indios no tienen t_person
+        this.jdbcTemplate.update("update person p set p.active = 0 where not exists (select 1 from t_person where email = p.email) and p.created_by_ldap = 1");
 
         this.jdbcTemplate.update("update person set grade = (select grade from t_person where t_person.email = person.email) where created_by_ldap = 1 and active = 1");
         this.jdbcTemplate.update("update person set saga = (select saga from t_person where t_person.email = person.email) where created_by_ldap = 1 and active = 1");
